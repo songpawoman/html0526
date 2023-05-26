@@ -48,17 +48,20 @@
         }
     </style>
     <script>
-        let header;//점수 영역 
-        let pic; //큰 이미지
-        let info1; //수도 
-        let info2; //특색 
-        let keyword; //input 박스
-        let status=true; // 현재 게임의 상태 (종료 false)
-
+        let header;
+        let pic;
+        let info1;
+        let info2;
+        let keyword;
+        let footer;
+        let score=0;
+        let index=-1;
+        
         let nationArray=[
             ["../images/flags/america.png","수도:워싱턴","특색:초강대국", "미국"],
             ["../images/flags/aust.png","캔버라","특색:코알라", "호주"],
-            ["../images/flags/canada.jfif","오타와","특색:북아메리카 연방국","캐나다"],
+            ["../images/flags/canada.jfif","오타와","특색:북아메리카 연방국","캐나다"]
+            /*
             ["../images/flags/england.png","런던","특색:버킹엄궁전","영국"],
             ["../images/flags/france.png","파리","특색:에펠탑","프랑스"],
             ["../images/flags/german.jfif","베를린","특색:맥주","독일"],
@@ -66,53 +69,46 @@
             ["../images/flags/north.jfif","평양","특색:핵실험","북한"],
             ["../images/flags/spain.png","마드리드","특색:투우","스페인"],
             ["../images/flags/sweden.png","스톡홀름","이케아","스웨덴"]
+            */
         ]
-        
-        let index=-1;//어떤 나라를 접근할지 여부를 결정짓는 이차원
-                        //배열의 인덱스, 즉 층을 바꾸기 위함..
-        let score=0;
+        let status=true;
 
-        //데이터 출력함수 
-        function next(){
-            index++;
-            if(index> nationArray.length-1){ //배열의 범위를 넘어서는 index는 다시 최대index로
-                    //돌려놓자
-                index=nationArray.length-1;
-                status=false;
-            }
-            pic.src=nationArray[index][0]; //국기사진
-            info1.innerText=nationArray[index][1];//수도
-            info2.innerText=nationArray[index][2];//특색 
+        function init(){
+            header = document.getElementById("header");
+            pic=document.getElementById("pic");
+            info1 = document.getElementById("info1");
+            info2 = document.getElementById("info2");
+            keyword = document.querySelector("input");
+            footer = document.getElementById("footer");
         }
         
-        //입력한 값과 이차원배열에 들어잇는 나라명정보와 일치하면
-        //점수 올리기, 입력값 다시 초기화 , 다음 나라 나오게..
         function confirmKeyword(){
-            if(keyword.value==nationArray[index][3]){
+            if(keyword.value== nationArray[index][3]){
                 if(status)score+=10;
                 next();
             }
             keyword.value="";
             header.innerText=score+" 점";
         }
-
-        function init(){
-            header = document.getElementById("header");
-            pic = document.getElementById("pic");
-            info1=document.getElementById("info1");
-            info2=document.getElementById("info2");
-            keyword = document.querySelector("input");
+        //컨텐츠 출력
+        function next(){
+            index++;
+            if(index > nationArray.length-1){
+                index=nationArray.length-1;
+                status=false;
+            }
+            pic.src=nationArray[index][0];
+            info1.innerText=nationArray[index][1];
+            info2.innerText=nationArray[index][2];
         }
 
         addEventListener("load", function(){
             init();
             next();
-            //keyword에 커서 올리기 
             keyword.focus();
 
-            //keyword 박스에 키보드이벤트 연결 
             keyword.addEventListener("keyup", function(e){
-                if(e.keyCode==13){ //엔터치면...
+                if(e.keyCode==13){     
                     confirmKeyword();
                 }
             });
