@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width:400px;
+            height:450px;
+            background-color: yellow;
+            margin: auto;
+        }
+        #header{
+            width:100%;
+            height:50px;
+            background-color: greenyellow;
+            font-size: 40px;
+            text-align: center;
+        }
+        
+        #content{
+            width:100%;
+            height:300px;
+            background: hotpink;
+        }
+        #content img{
+            width:100%;
+            height:200px;
+        }
+        #content #info1, #info2{
+            font-size:20px;
+            margin:10px;        
+        }
+        #footer{
+            width:100%;
+            height:100px;
+            background-color: aqua;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        #footer input{
+            width:90%;
+            height:90%;
+            font-size: 40px;
+        }
+    </style>
+    <script>
+        let nationArray=[
+            ["../flags/america.png","수도:워싱턴","특색:초강대국", "미국"],
+            ["../flags/aust.png","캔버라","특색:코알라", "호주"],
+            ["../flags/canada.jfif","오타와","특색:북아메리카 연방국","캐나다"],
+            ["../flags/england.png","런던","특색:버킹엄궁전","영국"],
+            ["../flags/france.png","파리","특색:에펠탑","프랑스"],
+            ["../flags/german.png","독일","특색:맥주","독일"],
+            ["../flags/korea.png","서울","특색:김치,한복","한국"],
+            ["../flags/north.jfif","평양","특색:핵실험","북한"],
+            ["../flags/spain.png","마드리드","특색:투우","스페인"],
+            ["../flags/sweden.png","스톡홀름","이케아","스웨덴"]
+        ]
+
+        function init(){
+
+        }
+
+        addEventListener("load", function(){
+            init();
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">0점</div>
+        <div id="content">
+            <img id="pic">
+            <div id="info1">서울</div>
+            <div id="info2">김치</div>
+        </div>
+        <div id="footer">
+            <input type="text">
+        </div>
+    </div>
+    
+</body>
+</html>
